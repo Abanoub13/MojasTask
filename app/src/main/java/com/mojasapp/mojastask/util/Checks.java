@@ -22,4 +22,11 @@ public class Checks {
         }
         return reference;
     }
+
+    /**
+     * Checks whether the provided reference is null or not
+     */
+    public static boolean isNotNull(Object reference) {
+        return reference != null;
+    }
 }
