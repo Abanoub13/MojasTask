@@ -3,7 +3,6 @@ package com.mojasapp.mojastask.filteralbum;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +19,7 @@ public class FilterableAlbumViewHolder extends ViewHolder {
     private ImageView albumImageView;
     private CheckLimitedCheckBox filterCheckBox;
     private FilterListener listener;
+    private CompoundButton.OnCheckedChangeListener checkListener;
 
     public FilterableAlbumViewHolder(View itemView, CheckLimit checkLimit) {
         super(itemView);
@@ -28,14 +28,14 @@ public class FilterableAlbumViewHolder extends ViewHolder {
         albumImageView = itemView.findViewById(R.id.albumImageView);
         filterCheckBox = itemView.findViewById(R.id.filterCheckBox);
         filterCheckBox.setCheckLimit(checkLimit);
-        filterCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        checkListener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (listener != null) {
                     listener.onIndexFiltered(getAdapterPosition(), b);
                 }
             }
-        });
+        };
     }
 
     public void setFilterListener(FilterListener listener) {
@@ -45,7 +45,9 @@ public class FilterableAlbumViewHolder extends ViewHolder {
     public void bindAlbum(FilterableAlbum album) {
         titleTextView.setText(album.getTitle());
         idTextView.setText(String.valueOf(album.getId()));
+        filterCheckBox.setOnCheckedChangeListener(null);
         filterCheckBox.setChecked(album.isSelected());
+        filterCheckBox.setOnCheckedChangeListener(checkListener);
         albumImageView.setImageResource(0);
         Picasso.get().
                 load(album.getImageUrl()).

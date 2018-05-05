@@ -9,6 +9,9 @@ import com.mojasapp.mojastask.data.remote.RemoteDataSource;
 import com.mojasapp.mojastask.data.remote.Repository;
 import com.mojasapp.mojastask.data.remote.RetrofitAlbumApi;
 import com.mojasapp.mojastask.data.remote.RetrofitRemoteDataSource;
+import com.mojasapp.mojastask.displayalbum.DisplayAlbumPresenter;
+import com.mojasapp.mojastask.displayalbum.DisplayableAlbum;
+import com.mojasapp.mojastask.displayalbum.DisplayableAlbumMapper;
 import com.mojasapp.mojastask.filteralbum.FilterAlbumContract;
 import com.mojasapp.mojastask.filteralbum.FilterAlbumPresenter;
 import com.mojasapp.mojastask.filteralbum.FilterableAlbum;
@@ -29,6 +32,13 @@ public class Injector {
         );
     }
 
+    public static DisplayAlbumPresenter createDisplayAlbumPresenter() {
+        return new DisplayAlbumPresenter(
+                injectRepository(),
+                injectDisplayableMapper()
+        );
+    }
+
     private static Repository<Integer, AlbumRaw> injectRepository() {
         if (repository == null) {
             synchronized (Injector.class) {
@@ -44,6 +54,10 @@ public class Injector {
 
     private static ListMapper<AlbumRaw, FilterableAlbum> injectFilterableMapper() {
         return new ListMapper<>(new FilterableAlbumMapper());
+    }
+
+    private static ListMapper<AlbumRaw, DisplayableAlbum> injectDisplayableMapper() {
+        return new ListMapper<>(new DisplayableAlbumMapper());
     }
 
     private static RemoteDataSource<AlbumRaw> injectRemoteDataSource() {

@@ -8,12 +8,10 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/albumsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:visibility="gone"
-        android:layout_marginBottom="@dimen/filter_fragment_vertical_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/filterButton"
         tools:visibility="visible"/>
 
     <ProgressBar
@@ -26,19 +24,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.5"/>
-
-    <Button
-        android:id="@id/filterButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/filter_button_horizontal_margin"
-        android:layout_marginEnd="@dimen/filter_button_horizontal_margin"
-        android:layout_marginBottom="@dimen/filter_fragment_vertical_margin"
-        android:background="@color/colorAccent"
-        android:textColor="@color/white"
-        android:text="@string/filter_done"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

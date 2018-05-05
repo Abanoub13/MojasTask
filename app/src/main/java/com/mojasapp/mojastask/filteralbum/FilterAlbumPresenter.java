@@ -48,7 +48,9 @@ public class FilterAlbumPresenter implements Presenter{
         if (isChecked) {
             filteredIds.add(albumId);
         } else {
-            filteredIds.remove(filteredIds.indexOf(albumId));
+            int index = filteredIds.indexOf(albumId);
+            if (index != -1)
+            filteredIds.remove(index);
         }
     }
 

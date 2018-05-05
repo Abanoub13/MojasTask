@@ -1,6 +1,7 @@
 package com.mojasapp.mojastask.filteralbum;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,12 +15,14 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.mojasapp.mojastask.R;
+import com.mojasapp.mojastask.displayalbum.DisplayAlbumActivity;
 
 import static com.mojasapp.mojastask.filteralbum.FilterAlbumContract.Presenter;
 import static android.view.View.VISIBLE;
 import static android.view.View.GONE;
 import static com.mojasapp.mojastask.util.Checks.assertNotNull;
 import static com.mojasapp.mojastask.filteralbum.FilterableAlbumViewHolder.FilterListener;
+import static com.mojasapp.mojastask.util.ArrayListUtil.createArrayListFromArray;
 
 
 public class FilterAlbumFragment extends Fragment implements FilterAlbumContract.View {
@@ -89,7 +92,14 @@ public class FilterAlbumFragment extends Fragment implements FilterAlbumContract
 
     @Override
     public void navigateToDisplayActivity(Integer[] filteredAlbumsIds) {
-
+        Intent intent = new Intent(getActivity(), DisplayAlbumActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putIntegerArrayList(
+                DisplayAlbumActivity.ID_ARRAY_KEY,
+                createArrayListFromArray(filteredAlbumsIds)
+        );
+        intent.putExtras(bundle);
+        getActivity().startActivity(intent);
     }
 
     @Override

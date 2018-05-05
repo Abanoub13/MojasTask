@@ -9,4 +9,5 @@
     <string name="no_selection_error_message_title">No data selected</string>
     <string name="no_selection_error_message_description">select at least one item then try again</string>
     <string name="ok">Ok</string>
+    <string name="filtered">Filtered</string>
 </resources>
