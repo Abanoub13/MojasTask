@@ -32,41 +32,47 @@ public class CheckLimitedCheckBox extends AppCompatCheckBox {
                 if (checkLimit.canNotUnCheck()) {
                     return false;
                 }
-            } else if (checkLimit.canNotCheck()){
-                return false;
+                checkLimit.decrement();
+            } else {
+                if (checkLimit.canNotCheck()) {
+                    return false;
+                }
+                checkLimit.increment();
             }
+
         }
         return super.performClick();
     }
-}
 
-class CheckLimit {
+    public static class CheckLimit {
 
-    private final int limit;
-    private int count;
+        private final int limit;
+        private int count;
 
-    public CheckLimit(int limit) {
-        this.limit = limit;
-        count = 0;
-    }
+        public CheckLimit(int limit) {
+            this.limit = limit;
+            count = 0;
+        }
 
-    void increment() {
-        if (++count > limit) {
-            throw new RuntimeException("Count is corrupter : "+count);
+        void increment() {
+            if (++count > limit) {
+                throw new RuntimeException("Count is corrupter : "+count);
+            }
+        }
+
+        void decrement() {
+            if (--count < 0){
+                throw new RuntimeException("Count is corrupter : "+count);
+            }
+        }
+
+        boolean canNotCheck() {
+            return count >= limit;
+        }
+
+        boolean canNotUnCheck() {
+            return count <= 0;
         }
     }
 
-    void decrement() {
-        if (--count < 0){
-            throw new RuntimeException("Count is corrupter : "+count);
-        }
-    }
-
-    boolean canNotCheck() {
-        return count > limit;
-    }
-
-    boolean canNotUnCheck() {
-        return count < 0;
-    }
 }
