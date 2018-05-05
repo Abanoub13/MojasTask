@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MojasTask</string>
+    <string name="filter_activity_title">Check to filter this list</string>
 </resources>
