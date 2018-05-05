@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Injector {
 
     private static Repository<Integer, AlbumRaw> repository;
-    private static final String URL = "https://jsonplaceholder.typicode";
+    private static final String URL = "https://jsonplaceholder.typicode.com";
 
     public static FilterAlbumContract.Presenter createFilterAlbumPresenter() {
         return new FilterAlbumPresenter(

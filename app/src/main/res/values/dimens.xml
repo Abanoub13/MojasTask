@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="viewHolderVerticalMargin">3dp</dimen>
+    <dimen name="view_holder_horizontal_margin">5dp</dimen>
+    <dimen name="filter_button_horizontal_margin">30dp</dimen>
+    <dimen name="filter_fragment_vertical_margin">15dp</dimen>
+</resources>

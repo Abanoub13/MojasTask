@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">MojasTask</string>
     <string name="filter_activity_title">Check to filter this list</string>
+    <string name="filter_done">Filter Done</string>
+    <string name="loading_error_message_title">Error loading data</string>
+    <string name="loading_error_message_description">Data couldn\'t be loaded Retry?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="no_selection_error_message_title">No data selected</string>
+    <string name="no_selection_error_message_description">select at least one item then try again</string>
+    <string name="ok">Ok</string>
 </resources>
