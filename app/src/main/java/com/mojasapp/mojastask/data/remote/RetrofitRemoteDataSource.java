@@ -2,6 +2,7 @@ package com.mojasapp.mojastask.data.remote;
 
 import com.mojasapp.mojastask.data.AlbumRaw;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class RetrofitRemoteDataSource implements RemoteDataSource<AlbumRaw> {
 
     public RetrofitRemoteDataSource(RetrofitAlbumApi api) {
         this.albumApi = api;
+        calls = new HashMap<>();
     }
 
     private void addCall(Object tag, Call<List<AlbumRaw>> call) {
