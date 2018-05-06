@@ -3,9 +3,10 @@ package com.mojasapp.mojastask.displayalbum;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
+import com.mojasapp.mojastask.BaseActivity;
 import com.mojasapp.mojastask.R;
 import com.mojasapp.mojastask.data.Injector;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 import static com.mojasapp.mojastask.util.ActivityUtil.addFragmentToActivity;
 
-public class DisplayAlbumActivity extends AppCompatActivity {
+public class DisplayAlbumActivity extends BaseActivity {
 
     public static final String ID_ARRAY_KEY = "ArrayKey";
 
@@ -21,19 +22,25 @@ public class DisplayAlbumActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setupIdArray(savedInstanceState);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_album);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
+    }
+
+    private void setupIdArray(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             ids = savedInstanceState.getIntegerArrayList(ID_ARRAY_KEY);
         } else {
             ids = getIntent().getExtras().getIntegerArrayList(ID_ARRAY_KEY);
         }
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_base;
+    }
+
+    @Override
+    protected void setupFragment() {
         DisplayAlbumFragment fragment =
                 (DisplayAlbumFragment) getSupportFragmentManager().findFragmentById(R.id.frame);
         if (fragment == null) {
@@ -48,6 +55,21 @@ public class DisplayAlbumActivity extends AppCompatActivity {
                     R.id.frame
             );
         }
+    }
+
+    @Override
+    protected Toolbar getToolBar() {
+        return findViewById(R.id.toolbar);
+    }
+
+    @Override
+    protected TextView getTitleTextView() {
+        return findViewById(R.id.titleTextView);
+    }
+
+    @Override
+    protected String getTitleText() {
+        return getApplicationContext().getString(R.string.displayable_activity_title);
     }
 
     @Override

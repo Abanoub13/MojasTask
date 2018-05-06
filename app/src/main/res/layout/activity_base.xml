@@ -16,9 +16,9 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
+            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/filter_activity_title"
             android:layout_gravity="center"
             style="@style/ToolBarTitle"/>
 
